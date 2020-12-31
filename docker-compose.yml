@@ -1,0 +1,538 @@
+version: '3'
+services:
+  #  api_gateway_service:
+  #    build:
+  #      context: ""
+  #      dockerfile: Dockerfile
+  #      args:
+  #        - service=api_gateway_service
+  #    image: "la/apps:v1"
+  #    restart: always
+  #    logging:
+  #      driver: "json-file"
+  #      options:
+  #        max-size: "50m"
+  #        max-file: "4"
+  #    volumes:
+  #      - "${PWD}/api_gateway_service:/service"
+  #    ports:
+  #      - "8001:8001"
+  #    networks:
+  #      - sanic-network
+  #    environment:
+  #      SERVER_HOST: "127.0.0.1"
+  #      #      SERVER_PORT: 8001
+  #      MONGODB_SERVICE_HOST: "db"
+  #      MONGODB_SERVICE_USER: "root"
+  #      MONGODB_SERVICE_PASSWORD: "example"
+  #      MONGODB_SERVICE_PORT: 27017
+  #      MONGODB_SERVICE_DB_NAME: goods_config
+  #
+  #      REDIS_SERVICE_HOST: "redis"
+  #      REDIS_SERVICE_PORT: 6379
+  #
+  #      MQ_SERVICE_HOST: "mq"
+  #      MQ_SERVICE_PORT: 5672
+  #      MQ_SERVICE_VIRTUAL_HOST: "/"
+  #      MQ_SERVICE_LOGIN_METHOD: "PLAIN"
+  #      MQ_SERVICE_SSL: ""
+  #      MQ_SERVICE_USERNAME: "musician"
+  #      MQ_SERVICE_PASSWORD: "buluowo134679"
+  #
+  #      ACCESS_CONTROL_ALLOW_ORIGIN: "*"
+  #      ACCESS_CONTROL_ALLOW_HEADERS: "Content-Type, UID, TOKEN, PLATFORM, DEVICE-ID, VERSION, PAD, BUNDLE"
+  #      ACCESS_CONTROL_ALLOW_METHODS: "POST, PUT, DELETE, GET"
+  #      ZIPKIN_SERVER: 'http://zipkin:9411/api/v1/spans'
+  #      CONSUL_AGENT_HOST: 'consul'
+  #      CONSUL_AGENT_PORT: 8500
+  #      API_BASE_URL: "api.agency.immusician.com"
+  #      DOCKER: 1
+  #
+  #    depends_on:
+  #      - db
+  #      - redis
+  #      - mq
+  #      - zipkin
+  #      - swagger
+  #      - elasticsearch
+  #      - consul
+  #    command: ["python", "-m", 'sanic', "server.app", "--workers=1", "--port=8001", "--host=0.0.0.0"]
+  #
+  #  course_service:
+  #    image: "la/apps:v1"
+  #    restart: always
+  #    logging:
+  #      driver: "json-file"
+  #      options:
+  #        max-size: "50m"
+  #        max-file: "4"
+  #    volumes:
+  #      - "${PWD}/course_service:/service"
+  #    ports:
+  #      - "8002:8002"
+  #    networks:
+  #      - sanic-network
+  #    environment:
+  #      SERVER_HOST: "127.0.0.1"
+  #      #      SERVER_PORT: 8001
+  ##      MONGODB_SERVICE_HOST: "db"
+  ##      MONGODB_SERVICE_USER: "root"
+  ##      MONGODB_SERVICE_PASSWORD: "example"
+  ##      MONGODB_SERVICE_PORT: 27017
+  ##      MONGODB_SERVICE_DB_NAME: course_server
+  #      REDIS_SERVICE_HOST: "redis"
+  #      REDIS_SERVICE_PORT: 6379
+  #
+  #      MQ_SERVICE_HOST: "mq"
+  #      MQ_SERVICE_PORT: 5672
+  #      MQ_SERVICE_VIRTUAL_HOST: "/"
+  #      MQ_SERVICE_LOGIN_METHOD: "PLAIN"
+  #      MQ_SERVICE_SSL: ""
+  #      MQ_SERVICE_USERNAME: "musician"
+  #      MQ_SERVICE_PASSWORD: "buluowo134679"
+  #
+  #      ACCESS_CONTROL_ALLOW_ORIGIN: "*"
+  #      ACCESS_CONTROL_ALLOW_HEADERS: "Content-Type, UID, TOKEN, PLATFORM, DEVICE-ID, VERSION, PAD, BUNDLE"
+  #      ACCESS_CONTROL_ALLOW_METHODS: "POST, PUT, DELETE, GET"
+  #      ZIPKIN_SERVER: 'http://zipkin:9411/api/v1/spans'
+  #      CONSUL_AGENT_HOST: 'consul'
+  #      CONSUL_AGENT_PORT: 8500
+  #      DOCKER: 1
+  #
+  #    depends_on:
+  #      - api_gateway_service
+  #    command: ["python", "-m", 'sanic', "server.app", "--workers=1", "--port=8002", "--host=0.0.0.0"]
+  #
+  #  guide_service:
+  #    image: "la/apps:v1"
+  #    restart: always
+  #    logging:
+  #      driver: "json-file"
+  #      options:
+  #        max-size: "50m"
+  #        max-file: "4"
+  #    volumes:
+  #      - "${PWD}/guide_service:/service"
+  #    ports:
+  #      - "8009:8009"
+  #    networks:
+  #      - sanic-network
+  #    environment:
+  #      SERVER_HOST: "127.0.0.1"
+  #      #      SERVER_PORT: 8001
+  #      MONGODB_SERVICE_HOST: "db"
+  #      MONGODB_SERVICE_USER: "root"
+  #      MONGODB_SERVICE_PASSWORD: "example"
+  #      MONGODB_SERVICE_PORT: 27017
+  #      MONGODB_SERVICE_DB_NAME: guide_server
+  #      REDIS_SERVICE_HOST: "redis"
+  #      REDIS_SERVICE_PORT: 6379
+  #
+  #      MQ_SERVICE_HOST: "mq"
+  #      MQ_SERVICE_PORT: 5672
+  #      MQ_SERVICE_VIRTUAL_HOST: "/"
+  #      MQ_SERVICE_LOGIN_METHOD: "PLAIN"
+  #      MQ_SERVICE_SSL: ""
+  #      MQ_SERVICE_USERNAME: "musician"
+  #      MQ_SERVICE_PASSWORD: "buluowo134679"
+  #
+  #      ACCESS_CONTROL_ALLOW_ORIGIN: "*"
+  #      ACCESS_CONTROL_ALLOW_HEADERS: "Content-Type, UID, TOKEN, PLATFORM, DEVICE-ID, VERSION, PAD, BUNDLE"
+  #      ACCESS_CONTROL_ALLOW_METHODS: "POST, PUT, DELETE, GET"
+  #      ZIPKIN_SERVER: 'http://zipkin:9411/api/v1/spans'
+  #      CONSUL_AGENT_HOST: 'consul'
+  #      CONSUL_AGENT_PORT: 8500
+  #      DOCKER: 1
+  #
+  #    depends_on:
+  #      - api_gateway_service
+  #    command: ["python", "-m", 'sanic', "server.app", "--workers=1", "--port=8009", "--host=0.0.0.0"]
+  #
+  #  institutions_service:
+  #    image: "la/apps:v1"
+  #    restart: always
+  #    logging:
+  #      driver: "json-file"
+  #      options:
+  #        max-size: "50m"
+  #        max-file: "4"
+  #    volumes:
+  #      - "${PWD}/institutions_service:/service"
+  #    ports:
+  #      - "8008:8008"
+  #    networks:
+  #      - sanic-network
+  #    environment:
+  #      SERVER_HOST: "127.0.0.1"
+  #      #      SERVER_PORT: 8001
+  #      MONGODB_SERVICE_HOST: "db"
+  #      MONGODB_SERVICE_USER: "root"
+  #      MONGODB_SERVICE_PASSWORD: "example"
+  #      MONGODB_SERVICE_PORT: 27017
+  #      MONGODB_SERVICE_DB_NAME: institutions_server
+  #      REDIS_SERVICE_HOST: "redis"
+  #      REDIS_SERVICE_PORT: 6379
+  #
+  #      MQ_SERVICE_HOST: "mq"
+  #      MQ_SERVICE_PORT: 5672
+  #      MQ_SERVICE_VIRTUAL_HOST: "/"
+  #      MQ_SERVICE_LOGIN_METHOD: "PLAIN"
+  #      MQ_SERVICE_SSL: ""
+  #      MQ_SERVICE_USERNAME: "musician"
+  #      MQ_SERVICE_PASSWORD: "buluowo134679"
+  #
+  #      ACCESS_CONTROL_ALLOW_ORIGIN: "*"
+  #      ACCESS_CONTROL_ALLOW_HEADERS: "Content-Type, UID, TOKEN, PLATFORM, DEVICE-ID, VERSION, PAD, BUNDLE"
+  #      ACCESS_CONTROL_ALLOW_METHODS: "POST, PUT, DELETE, GET"
+  #      ZIPKIN_SERVER: 'http://zipkin:9411/api/v1/spans'
+  #      CONSUL_AGENT_HOST: 'consul'
+  #      CONSUL_AGENT_PORT: 8500
+  #      DOCKER: 1
+  #
+  #    depends_on:
+  #      - api_gateway_service
+  #    command: ["python", "-m", 'sanic', "server.app", "--workers=1", "--port=8008", "--host=0.0.0.0"]
+  #
+  #  mail_service:
+  #    image: "la/apps:v1"
+  #    restart: always
+  #    logging:
+  #      driver: "json-file"
+  #      options:
+  #        max-size: "50m"
+  #        max-file: "4"
+  #    volumes:
+  #      - "${PWD}/mail_service:/service"
+  #    ports:
+  #      - "8010:8010"
+  #    networks:
+  #      - sanic-network
+  #    environment:
+  #      SERVER_HOST: "127.0.0.1"
+  #      #      SERVER_PORT: 8001
+  #      MONGODB_SERVICE_HOST: "db"
+  #      MONGODB_SERVICE_USER: "root"
+  #      MONGODB_SERVICE_PASSWORD: "example"
+  #      MONGODB_SERVICE_PORT: 27017
+  #      MONGODB_SERVICE_DB_NAME: mail_server
+  #      REDIS_SERVICE_HOST: "redis"
+  #      REDIS_SERVICE_PORT: 6379
+  #
+  #      MQ_SERVICE_HOST: "mq"
+  #      MQ_SERVICE_PORT: 5672
+  #      MQ_SERVICE_VIRTUAL_HOST: "/"
+  #      MQ_SERVICE_LOGIN_METHOD: "PLAIN"
+  #      MQ_SERVICE_SSL: ""
+  #      MQ_SERVICE_USERNAME: "musician"
+  #      MQ_SERVICE_PASSWORD: "buluowo134679"
+  #
+  #      ACCESS_CONTROL_ALLOW_ORIGIN: "*"
+  #      ACCESS_CONTROL_ALLOW_HEADERS: "Content-Type, UID, TOKEN, PLATFORM, DEVICE-ID, VERSION, PAD, BUNDLE"
+  #      ACCESS_CONTROL_ALLOW_METHODS: "POST, PUT, DELETE, GET"
+  #      ZIPKIN_SERVER: 'http://zipkin:9411/api/v1/spans'
+  #      CONSUL_AGENT_HOST: 'consul'
+  #      CONSUL_AGENT_PORT: 8500
+  #      DOCKER: 1
+  #
+  #    depends_on:
+  #      - api_gateway_service
+  #    command: ["python", "-m", 'sanic', "server.app", "--workers=1", "--port=8010", "--host=0.0.0.0"]
+  #
+  #  statistics_service:
+  #    image: "la/apps:v1"
+  #    restart: always
+  #    logging:
+  #      driver: "json-file"
+  #      options:
+  #        max-size: "50m"
+  #        max-file: "4"
+  #    volumes:
+  #      - "${PWD}/statistics_service:/service"
+  #    ports:
+  #      - "8006:8006"
+  #    networks:
+  #      - sanic-network
+  #    environment:
+  #      SERVER_HOST: "127.0.0.1"
+  #      #      SERVER_PORT: 8001
+  #      MONGODB_SERVICE_HOST: "db"
+  #      MONGODB_SERVICE_USER: "root"
+  #      MONGODB_SERVICE_PASSWORD: "example"
+  #      MONGODB_SERVICE_PORT: 27017
+  #      MONGODB_SERVICE_DB_NAME: statistics_server
+  #      REDIS_SERVICE_HOST: "redis"
+  #      REDIS_SERVICE_PORT: 6379
+  #
+  #      MQ_SERVICE_HOST: "mq"
+  #      MQ_SERVICE_PORT: 5672
+  #      MQ_SERVICE_VIRTUAL_HOST: "/"
+  #      MQ_SERVICE_LOGIN_METHOD: "PLAIN"
+  #      MQ_SERVICE_SSL: ""
+  #      MQ_SERVICE_USERNAME: "musician"
+  #      MQ_SERVICE_PASSWORD: "buluowo134679"
+  #
+  #      ACCESS_CONTROL_ALLOW_ORIGIN: "*"
+  #      ACCESS_CONTROL_ALLOW_HEADERS: "Content-Type, UID, TOKEN, PLATFORM, DEVICE-ID, VERSION, PAD, BUNDLE"
+  #      ACCESS_CONTROL_ALLOW_METHODS: "POST, PUT, DELETE, GET"
+  #      ZIPKIN_SERVER: 'http://zipkin:9411/api/v1/spans'
+  #      CONSUL_AGENT_HOST: 'consul'
+  #      CONSUL_AGENT_PORT: 8500
+  #      DOCKER: 1
+  #
+  #    depends_on:
+  #      - api_gateway_service
+  #    command: ["python", "-m", 'sanic', "server.app", "--workers=1", "--port=8006", "--host=0.0.0.0"]
+  #
+  #  user_service:
+  #    image: "la/apps:v1"
+  #    restart: always
+  #    logging:
+  #      driver: "json-file"
+  #      options:
+  #        max-size: "50m"
+  #        max-file: "4"
+  #    volumes:
+  #      - "${PWD}/user_service:/service"
+  #    ports:
+  #      - "8030:8030"
+  #    networks:
+  #      - sanic-network
+  #    environment:
+  #      SERVER_HOST: "127.0.0.1"
+  #      #      SERVER_PORT: 8001
+  #      MONGODB_SERVICE_HOST: "db"
+  #      MONGODB_SERVICE_USER: "root"
+  #      MONGODB_SERVICE_PASSWORD: "example"
+  #      MONGODB_SERVICE_PORT: 27017
+  #      MONGODB_SERVICE_DB_NAME: user_server
+  #      REDIS_SERVICE_HOST: "redis"
+  #      REDIS_SERVICE_PORT: 6379
+  #
+  #      MQ_SERVICE_HOST: "mq"
+  #      MQ_SERVICE_PORT: 5672
+  #      MQ_SERVICE_VIRTUAL_HOST: "/"
+  #      MQ_SERVICE_LOGIN_METHOD: "PLAIN"
+  #      MQ_SERVICE_SSL: ""
+  #      MQ_SERVICE_USERNAME: "musician"
+  #      MQ_SERVICE_PASSWORD: "buluowo134679"
+  #
+  #      ACCESS_CONTROL_ALLOW_ORIGIN: "*"
+  #      ACCESS_CONTROL_ALLOW_HEADERS: "Content-Type, UID, TOKEN, PLATFORM, DEVICE-ID, VERSION, PAD, BUNDLE"
+  #      ACCESS_CONTROL_ALLOW_METHODS: "POST, PUT, DELETE, GET"
+  #      ZIPKIN_SERVER: 'http://zipkin:9411/api/v1/spans'
+  #      CONSUL_AGENT_HOST: 'consul'
+  #      CONSUL_AGENT_PORT: 8500
+  #      DOCKER: 1
+  #
+  #    depends_on:
+  #      - api_gateway_service
+  #    command: ["python", "-m", 'sanic', "server.app", "--workers=1", "--port=8030", "--host=0.0.0.0"]
+  #
+  #  proxy_service:
+  #    image: "la/apps:v1"
+  #    restart: always
+  #    logging:
+  #      driver: "json-file"
+  #      options:
+  #        max-size: "50m"
+  #        max-file: "4"
+  #    volumes:
+  #    - "${PWD}/proxy_service:/service"
+  #    ports:
+  #    - "8100:8100"
+  #    networks:
+  #    - sanic-network
+  #    environment:
+  #      SERVER_HOST: "127.0.0.1"
+  #      #      SERVER_PORT: 8001
+  #      MONGODB_SERVICE_HOST: "db"
+  #      MONGODB_SERVICE_USER: "root"
+  #      MONGODB_SERVICE_PASSWORD: "example"
+  #      MONGODB_SERVICE_PORT: 27017
+  #      MONGODB_SERVICE_DB_NAME: proxy_server
+  #      REDIS_SERVICE_HOST: "redis"
+  #      REDIS_SERVICE_PORT: 6379
+  #
+  #      MQ_SERVICE_HOST: "mq"
+  #      MQ_SERVICE_PORT: 5672
+  #      MQ_SERVICE_VIRTUAL_HOST: "/"
+  #      MQ_SERVICE_LOGIN_METHOD: "PLAIN"
+  #      MQ_SERVICE_SSL: ""
+  #      MQ_SERVICE_USERNAME: "musician"
+  #      MQ_SERVICE_PASSWORD: "buluowo134679"
+  #
+  #      ACCESS_CONTROL_ALLOW_ORIGIN: "*"
+  #      ACCESS_CONTROL_ALLOW_HEADERS: "Content-Type, UID, TOKEN, PLATFORM, DEVICE-ID, VERSION, PAD, BUNDLE"
+  #      ACCESS_CONTROL_ALLOW_METHODS: "POST, PUT, DELETE, GET"
+  #      ZIPKIN_SERVER: 'http://zipkin:9411/api/v1/spans'
+  #      CONSUL_AGENT_HOST: 'consul'
+  #      CONSUL_AGENT_PORT: 8500
+  #      DOCKER: 1
+  #
+  #    depends_on:
+  #    - api_gateway_service
+  #    command: ["python", "-m", 'sanic', "server.app", "--workers=1", "--port=8100", "--host=0.0.0.0"]
+  #
+  #  worker_service:
+  #    image: "la/apps:v1"
+  #    restart: always
+  #    logging:
+  #      driver: "json-file"
+  #      options:
+  #        max-size: "50m"
+  #        max-file: "4"
+  #    volumes:
+  #      - "${PWD}/worker_service:/service"
+  #    ports:
+  #      - "8003:8003"
+  #    networks:
+  #      - sanic-network
+  #    environment:
+  #      SERVER_HOST: "127.0.0.1"
+  #      #      SERVER_PORT: 8001
+  #      MONGODB_SERVICE_HOST: "db"
+  #      MONGODB_SERVICE_USER: "root"
+  #      MONGODB_SERVICE_PASSWORD: "example"
+  #      MONGODB_SERVICE_PORT: 27017
+  #      MONGODB_SERVICE_DB_NAME: worker_server
+  #      REDIS_SERVICE_HOST: "redis"
+  #      REDIS_SERVICE_PORT: 6379
+  #
+  #      MQ_SERVICE_HOST: "mq"
+  #      MQ_SERVICE_PORT: 567213147802680
+  #      MQ_SERVICE_VIRTUAL_HOST: "/"
+  #      MQ_SERVICE_LOGIN_METHOD: "PLAIN"
+  #      MQ_SERVICE_SSL: ""
+  #      MQ_SERVICE_USERNAME: "musician"
+  #      MQ_SERVICE_PASSWORD: "buluowo134679"
+  #
+  #      ACCESS_CONTROL_ALLOW_ORIGIN: "*"
+  #      ACCESS_CONTROL_ALLOW_HEADERS: "Content-Type, UID, TOKEN, PLATFORM, DEVICE-ID, VERSION, PAD, BUNDLE"
+  #      ACCESS_CONTROL_ALLOW_METHODS: "POST, PUT, DELETE, GET"
+  #      ZIPKIN_SERVER: 'http://zipkin:9411/api/v1/spans'
+  #      CONSUL_AGENT_HOST: 'consul'
+  #      CONSUL_AGENT_PORT: 8500
+  #      DOCKER: 1
+  #
+  #    depends_on:
+  #      - api_gateway_service
+  #    command: ["python", "-m", 'sanic', "server.app", "--workers=1", "--port=8003", "--host=0.0.0.0"]
+
+
+  mongodb:
+    image: "mongo:4.0.8"
+    restart: always
+    ports:
+      - "27018:27017"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "4"
+    volumes:
+      - "${PWD}/data/mongo_data:/data/db"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1Chenghan
+    networks:
+      - cloud
+
+  redis:
+    image: "redis:3.2"
+    restart: always
+    ports:
+      - "6379:6379"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "4"
+    volumes:
+      - "${PWD}/data/redis_data:/data"
+
+    networks:
+      - cloud
+
+
+  swagger:
+    image: "swaggerapi/swagger-ui:v3.0.5"
+    restart: always
+    ports:
+      - "8090:8080"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "4"
+    networks:
+      - cloud
+    environment:
+      API_URL: "http://127.0.0.1:8001/openapi/spec.json"
+
+  elasticsearch:
+    image: "elasticsearch:5.6.8"
+    restart: always
+    ports:
+      - "9300:9300"
+      - "9200:9200"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "4"
+    networks:
+      - cloud
+    volumes:
+      - "${PWD}/data/esdata:/usr/share/elasticsearch/data"
+
+    environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+
+  mq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - "5671:5671"
+      - "5672:5672"
+      - "15672:15672"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "4"
+    volumes:
+      - "${PWD}/data/rabbitmq:/var/lib/rabbitmq"
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: 1Chenghan
+      RABBITMQ_DEFAULT_VHOST: /
+    networks:
+      - cloud
+
+  mysqldb:
+    image:
+      "mysql:latest"
+    restart:
+      always
+    ports:
+    - "3306:3306"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "4"
+    volumes:
+      - "${PWD}/data/mysql_data:/data/db"
+    environment:
+      - MYSQL_ROOT_PASSWORD=1Chenghan\
+    networks:
+      - cloud
+
+
+
+
+networks:
+  cloud:
+    driver: bridge
