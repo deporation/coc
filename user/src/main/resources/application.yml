@@ -2,21 +2,35 @@ server:
   # 服务端口号
   port: 8762
 spring:
-  application:
-    # 服务名称 - 服务之间使用名称进行通讯
-    name: user-service
-  data:
-    mongodb:
-      host:
-        localhost
-      port:
-        27017
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driverClassName:
+        com.mysql.cj.jdbc.Driver
+      url:
+        jdbc:mysql://localhost:3306/coc?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
       username:
         root
       password:
-        example
-      database:
-        user_server
+        1Chenghan
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM sys_user
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+
+  application:
+    # 服务名称 - 服务之间使用名称进行通讯
+    name: user-service
   redis:
     database:
       0
@@ -36,26 +50,20 @@ spring:
           0
     connect-timeout:
       1000
-  datasource:
-    driver-class-name:
-      com.mysql.cj.jdbc.Driver
-    url:
-      jdbc:mysql://localhost:3306/COC?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
-    data-username:
-      root
-    password:
-      1Chenghan
-  rabbitmq:
-    host:
-      localhost
-    port:
-      5672
-    virtual-host:
-      /user
-    username:
-      root
-    password:
-      1Chenghan
+
+mybatis-plus:
+  configuration:
+    use-column-label: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package:
+    com.tisu.user.entity
+logging:
+  level:
+    com:
+      tisu:
+        user:
+          mapper:
+            debug
 
 eureka:
   client:
