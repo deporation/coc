@@ -22,15 +22,15 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .pathMapping("/")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.tisu.user"))
+                .apis(RequestHandlerSelectors.basePackage("com.tisu.user.controller"))
                 .paths(PathSelectors.any())
                 .build().apiInfo(new ApiInfoBuilder()
-                        .title("coc網絡聊天室userclient")
-                        .description("coc網絡聊天室userclient")
+                        .title("coc网络聊天室userclient")
+                        .description("coc网络聊天室userclient")
                         .version("test")
                         .contact(new Contact("deporation","www.github.com/deporation","deporation1@gmail.com"))
                         .license("The Apache License")
-                        .licenseUrl("http://www.baidu.com")
+                        .licenseUrl("http://127.0.0.1:8762/openapi/spec.json")
                         .build());
     }
 }
