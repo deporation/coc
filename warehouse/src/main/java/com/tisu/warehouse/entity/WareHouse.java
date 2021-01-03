@@ -27,6 +27,6 @@ public class WareHouse implements Serializable {
 
     @ApiModelProperty("仓库分类存储信息")
     @JSONField(ordinal = 3)
-    private Map<String, List<Object>> goods;
+    private Map<String, List<Object>> wareHouse;
 
 }
