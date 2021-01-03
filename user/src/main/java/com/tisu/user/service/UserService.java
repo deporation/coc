@@ -14,8 +14,11 @@ public interface UserService extends IService<User> {
     /**
      * 根据id查询用户对象
      *
-     * @param id 用户uid
+     * @param user 用户
      * @return 用户对象
+     * @throws Exception 抛出异常
      */
-    User findUserById(int id);
+    User login(User user) throws Exception;
+
+
 }

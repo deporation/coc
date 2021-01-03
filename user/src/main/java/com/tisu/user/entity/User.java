@@ -2,6 +2,7 @@ package com.tisu.user.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
@@ -43,4 +44,12 @@ public class User {
     @TableId("password")
     @ApiModelProperty("密碼")
     private String password;
+
+    /**
+     * 邮箱
+     */
+    @JSONField(ordinal = 3)
+    @TableId("email")
+    @ApiModelProperty("邮箱")
+    private String email;
 }
