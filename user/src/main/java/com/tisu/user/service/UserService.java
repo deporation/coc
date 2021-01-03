@@ -2,9 +2,6 @@ package com.tisu.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.tisu.user.entity.User;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author deporation

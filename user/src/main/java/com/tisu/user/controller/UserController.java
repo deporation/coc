@@ -1,26 +1,21 @@
 package com.tisu.user.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
-import com.google.common.net.MediaType;
 import com.tisu.commons.entity.ResponseResult;
 import com.tisu.user.entity.User;
 import com.tisu.user.service.UserService;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author deporation
@@ -42,9 +37,9 @@ public class UserController {
              HttpSession session = request.getSession();
              String accessToken = UUID.randomUUID().toString();
              session.setAttribute("accessToken", accessToken);
-             session.setAttribute("user_id",user.getId());
+             session.setAttribute("userId",user.getId());
              Map<String,Object> map = new HashMap<>();
-             map.put("access_token",accessToken);
+             map.put("accessToken",accessToken);
              map.put("userId",search.getId());
              responseResult = ResponseResult.builder().success(true).state(200).message("success").content(map).build();
          }else{

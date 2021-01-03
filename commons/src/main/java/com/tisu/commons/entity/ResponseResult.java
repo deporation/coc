@@ -23,13 +23,4 @@ public class ResponseResult {
     @JSONField(ordinal = 4)
     private Object content;
 
-    @Override
-    public String toString() {
-        return "ResponseResult{" +
-                "success=" + success +
-                ", state=" + state +
-                ", message='" + message + '\'' +
-                ", content=" + content +
-                '}';
-    }
 }

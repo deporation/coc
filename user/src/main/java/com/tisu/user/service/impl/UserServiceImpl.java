@@ -27,7 +27,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User login(User user) throws Exception {
         User search = userMapper.findUserByEmail(user.getEmail());
-        System.out.println(Md5.verify(search.getPassword(),Md5.md5key,user.getPassword()));
         if (search != null && Md5.verify(search.getPassword(),Md5.md5key,user.getPassword())) {
             return search;
         }else {
