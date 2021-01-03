@@ -5,6 +5,10 @@ spring:
   devtools:
     livereload:
       port: 35730
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+      exclude: WEB-INF/**
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
@@ -58,6 +62,12 @@ spring:
     port: 5672
     username: root
     password: 1Chenghan
+  mvc:
+    static-path-pattern: /**
+  web:
+    resources:
+      static-locations:
+        classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
 
 mybatis-plus:
   configuration:
