@@ -24,11 +24,10 @@ public class WareHouseController {
 
     @RequestMapping(value = "/buy",method = {RequestMethod.POST})
     @ApiOperation("用户购买")
-    public String saveWareHouse(@RequestBody WareHouse wareHouse){
+    public ResponseResult saveWareHouse(@RequestBody WareHouse wareHouse){
         if (wareHouse != null){
             wareHouseService.buyGoods(wareHouse);
         }
-        ResponseResult responseResult = ResponseResult.builder().success(true).message("success").state(200).content(wareHouse).build();
-        return JSON.toJSONString(responseResult);
+        return ResponseResult.builder().success(true).message("success").state(200).content(wareHouse).build();
     }
 }

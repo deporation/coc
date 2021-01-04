@@ -7,12 +7,7 @@ spring:
       port: 35731
   data:
     mongodb:
-      database:
-        warehouse
-      host: localhost
-      port: 27018
-      username: root
-      password: 1Chenghan
+      uri: mongodb://root:1Chenghan@localhost:27018/warehouse?authSource=admin&authMechanism=SCRAM-SHA-1
   application:
   # 服务名称 - 服务之间使用名称进行通讯
     name: warehouse-service

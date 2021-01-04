@@ -30,7 +30,7 @@ public class UserController {
     @RequestMapping(value = "/login",method = {RequestMethod.POST})
     @ApiOperation("用户登录")
     @ApiImplicitParam(name = "user", value = "用户", paramType = "body", dataType = "User")
-    public String login(@RequestBody User user, HttpServletRequest request) throws Exception {
+    public ResponseResult login(@RequestBody User user, HttpServletRequest request) throws Exception {
         User search = userService.login(user);
         ResponseResult responseResult;
          if (search != null){
@@ -45,21 +45,21 @@ public class UserController {
          } else {
              responseResult = ResponseResult.builder().success(false).state(400).message("failure").content(null).build();
          }
-        return JSON.toJSONString(responseResult);
+        return responseResult;
     }
 
     @RequestMapping(value = "/findById", method = {RequestMethod.GET})
     @ApiOperation("根据用户的user_id来获取用户信息")
     @ApiImplicitParam(name = "id", value = "用户id", paramType = "query", dataType = "int", required = true)
-    public String findById(@RequestParam int id) {
+    public ResponseResult findById(@RequestParam int id) {
         User user = userService.findById(id);
         ResponseResult responseResult;
         if (user == null) {
-            responseResult = ResponseResult.builder().success(false).state(400).message("未找到该用户").content(user).build();
+            responseResult = ResponseResult.builder().success(false).state(400).message("未找到该用户").content(null).build();
         } else {
-            responseResult = ResponseResult.builder().success(true).state(200).message("success").content(user).build();
+            responseResult = ResponseResult.builder().success(true).state(200).message("success").content(JSON.toJSON(user)).build();
         }
-        return JSON.toJSONString(responseResult);
+        return responseResult;
     }
 
 }

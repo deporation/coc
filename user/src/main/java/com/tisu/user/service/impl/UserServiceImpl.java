@@ -34,6 +34,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public User login(User user) throws Exception {
         User search = userMapper.findUserByEmail(user.getEmail());
         if (search != null && Md5.verify(search.getPassword(), Md5.md5key, user.getPassword())) {
+            redisTemplate.opsForValue().set("user:" + search.getId(), search, 30, TimeUnit.SECONDS);
             return search;
         } else {
             return null;
