@@ -4,12 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.tisu.commons.entity.ResponseResult;
 import com.tisu.user.entity.User;
 import com.tisu.user.service.UserService;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,21 +29,36 @@ public class UserController {
 
     @RequestMapping(value = "/login",method = {RequestMethod.POST})
     @ApiOperation("用户登录")
+    @ApiImplicitParam(name = "user", value = "用户", paramType = "body", dataType = "User")
     public String login(@RequestBody User user, HttpServletRequest request) throws Exception {
         User search = userService.login(user);
-        ResponseResult responseResult = new ResponseResult();
+        ResponseResult responseResult;
          if (search != null){
              HttpSession session = request.getSession();
              String accessToken = UUID.randomUUID().toString();
              session.setAttribute("accessToken", accessToken);
              session.setAttribute("userId",user.getId());
-             Map<String,Object> map = new HashMap<>();
-             map.put("accessToken",accessToken);
-             map.put("userId",search.getId());
+             Map<String, Object> map = new HashMap<>();
+             map.put("accessToken", accessToken);
+             map.put("userId", search.getId());
              responseResult = ResponseResult.builder().success(true).state(200).message("success").content(map).build();
-         }else{
+         } else {
              responseResult = ResponseResult.builder().success(false).state(400).message("failure").content(null).build();
          }
+        return JSON.toJSONString(responseResult);
+    }
+
+    @RequestMapping(value = "/findById", method = {RequestMethod.GET})
+    @ApiOperation("根据用户的user_id来获取用户信息")
+    @ApiImplicitParam(name = "id", value = "用户id", paramType = "query", dataType = "int", required = true)
+    public String findById(@RequestParam int id) {
+        User user = userService.findById(id);
+        ResponseResult responseResult;
+        if (user == null) {
+            responseResult = ResponseResult.builder().success(false).state(400).message("未找到该用户").content(user).build();
+        } else {
+            responseResult = ResponseResult.builder().success(true).state(200).message("success").content(user).build();
+        }
         return JSON.toJSONString(responseResult);
     }
 
