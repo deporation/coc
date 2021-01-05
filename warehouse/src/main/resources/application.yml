@@ -49,3 +49,13 @@ eureka:
     prefer-ip-address: true
     # 注册中心列表中显示的状态参数
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+feign:
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/html, application/xml, application/json
+      min-request-size: 2048
+    response:
+      enabled: true
