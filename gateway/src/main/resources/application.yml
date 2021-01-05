@@ -8,7 +8,15 @@ spring:
     name: gate-way-service
 
 zuul:
-  routes:
+  zuul:
+    prefix: /api
+    routes:
+      user-service:
+        path: /user/**
+        serviceId: user-service
+        strip-prefix: false
+    ignored-services:
+      - warehouse-service
 eureka:
   client:
     service-url:
@@ -23,3 +31,7 @@ eureka:
     prefer-ip-address: true
     # 注册中心列表中显示的状态参数
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+ribbon:
+  ConnectionTimeOut:500
+  ReadTimeOut:2000
+  MaxAutoRetriesNextServer:0
