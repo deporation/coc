@@ -30,4 +30,15 @@ public class WareHouseServiceImpl implements WareHouseService {
             return null;
         }
     }
+
+    /**
+     * 根据用户uid查询仓库情况
+     *
+     * @param uid 用户id
+     * @return 用户仓库结果
+     */
+    @Override
+    public WareHouse findWareHouseByUid(int uid) {
+        return wareHouseMapper.findWareHouseByUid(uid);
+    }
 }

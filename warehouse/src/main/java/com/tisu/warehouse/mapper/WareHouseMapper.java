@@ -14,4 +14,11 @@ public interface WareHouseMapper {
      * @return 是否保存成功
      */
     boolean saveWareHouse(WareHouse wareHouse);
+
+    /**
+     * 根据uid进行仓库存储查询
+     * @param uid 用户uid
+     * @return 查询到的仓储结果
+     */
+    WareHouse findWareHouseByUid(int uid);
 }

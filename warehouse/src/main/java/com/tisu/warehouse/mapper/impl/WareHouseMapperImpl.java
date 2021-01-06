@@ -4,7 +4,11 @@ import com.tisu.warehouse.entity.WareHouse;
 import com.tisu.warehouse.mapper.WareHouseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * @author deporation
@@ -13,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class WareHouseMapperImpl implements WareHouseMapper {
 
-    @Autowired
+    @Resource
     private MongoTemplate mongoTemplate;
 
     /**
@@ -26,5 +30,17 @@ public class WareHouseMapperImpl implements WareHouseMapper {
     public boolean saveWareHouse(WareHouse wareHouse) {
         mongoTemplate.save(wareHouse);
         return true;
+    }
+
+    /**
+     * 根据uid进行仓库存储查询
+     *
+     * @param uid 用户uid
+     * @return 查询到的仓储结果
+     */
+    @Override
+    public WareHouse findWareHouseByUid(int uid) {
+        Query query = new Query(Criteria.where("uid").is(uid));
+        return mongoTemplate.findOne(query,WareHouse.class);
     }
 }

@@ -13,4 +13,11 @@ public interface WareHouseService {
      * @return 改变的之后的结果
      */
     WareHouse buyGoods(WareHouse wareHouse);
+
+    /**
+     * 根据用户uid查询仓库情况
+     * @param uid 用户id
+     * @return 用户仓库结果
+     */
+    WareHouse findWareHouseByUid(int uid);
 }
