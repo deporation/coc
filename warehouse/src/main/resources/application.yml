@@ -48,7 +48,7 @@ eureka:
     # 使用ip地址注册到注册中心
     prefer-ip-address: true
     # 注册中心列表中显示的状态参数
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
 feign:
   hystrix:
     enabled: true

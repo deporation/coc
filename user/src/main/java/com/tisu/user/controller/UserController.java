@@ -27,19 +27,23 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login",method = {RequestMethod.POST})
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
+    @RequestMapping(value = "/login", method = {RequestMethod.POST})
     @ApiOperation("用户登录")
     @ApiImplicitParam(name = "user", value = "用户", paramType = "body", dataType = "User")
     public ResponseResult login(@RequestBody User user, HttpServletRequest request) throws Exception {
         User search = userService.login(user);
         ResponseResult responseResult;
-         if (search != null){
-             HttpSession session = request.getSession();
-             String accessToken = UUID.randomUUID().toString();
+        if (search != null) {
+            HttpSession session = request.getSession();
+            String accessToken = UUID.randomUUID().toString();
              session.setAttribute("accessToken", accessToken);
              session.setAttribute("userId",user.getId());
              Map<String, Object> map = new HashMap<>();
-             map.put("accessToken", accessToken);
+            redisTemplate.opsForHash().put("accessToken", accessToken, search);
+            map.put("accessToken", accessToken);
              map.put("userId", search.getId());
              responseResult = ResponseResult.builder().success(true).state(200).message("success").content(map).build();
          } else {
