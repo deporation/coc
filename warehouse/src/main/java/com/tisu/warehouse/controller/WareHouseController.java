@@ -36,7 +36,7 @@ public class WareHouseController {
     @RequestMapping(value = "getWareHouseDeatil", method = {RequestMethod.GET})
     @ApiOperation("查询一个用户的仓库记录及其用户信息")
     public ResponseResult findWareHouse(@RequestParam(value = "uid") int id) {
-        Map<String,Object> result = new HashMap<>();
+        Map<String,Object> result = new HashMap<>(2);
         result.put("user",userServerFeigned.getUserDeatilById(id).getContent());
         result.put("warehouse",wareHouseService.findWareHouseByUid(id));
         return ResponseResult.builder().

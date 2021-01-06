@@ -39,16 +39,16 @@ public class UserController {
         if (search != null) {
             HttpSession session = request.getSession();
             String accessToken = UUID.randomUUID().toString();
-             session.setAttribute("accessToken", accessToken);
-             session.setAttribute("userId",user.getId());
-             Map<String, Object> map = new HashMap<>();
+            session.setAttribute("accessToken", accessToken);
+            session.setAttribute("userId", user.getId());
+            Map<String, Object> map = new HashMap<>(2);
             redisTemplate.opsForHash().put("accessToken", accessToken, search);
             map.put("accessToken", accessToken);
-             map.put("userId", search.getId());
-             responseResult = ResponseResult.builder().success(true).state(200).message("success").content(map).build();
-         } else {
-             responseResult = ResponseResult.builder().success(false).state(400).message("failure").content(null).build();
-         }
+            map.put("userId", search.getId());
+            responseResult = ResponseResult.builder().success(true).state(200).message("success").content(map).build();
+        } else {
+            responseResult = ResponseResult.builder().success(false).state(400).message("failure").content(null).build();
+        }
         return responseResult;
     }
 
