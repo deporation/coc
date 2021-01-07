@@ -9,15 +9,17 @@ import com.tisu.warehouse.entity.WareHouse;
 public interface WareHouseService {
     /**
      * 购买商品改变库存
+     *
      * @param wareHouse 需要改变的仓库
-     * @return 改变的之后的结果
      */
-    WareHouse buyGoods(WareHouse wareHouse);
+    void saveOrUpdateWareHouse(WareHouse wareHouse);
 
     /**
      * 根据用户uid查询仓库情况
+     *
      * @param uid 用户id
      * @return 用户仓库结果
      */
     WareHouse findWareHouseByUid(int uid);
+
 }

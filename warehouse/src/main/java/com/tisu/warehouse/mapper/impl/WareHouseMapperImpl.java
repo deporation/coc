@@ -41,6 +41,18 @@ public class WareHouseMapperImpl implements WareHouseMapper {
     @Override
     public WareHouse findWareHouseByUid(int uid) {
         Query query = new Query(Criteria.where("uid").is(uid));
-        return mongoTemplate.findOne(query,WareHouse.class);
+        return mongoTemplate.findOne(query, WareHouse.class);
+    }
+
+    /**
+     * 更新仓库
+     *
+     * @param wareHouse 需要更新的仓库
+     * @return 更新是否成功
+     */
+    @Override
+    public boolean updateWareHouse(WareHouse wareHouse) {
+        mongoTemplate.update(wareHouse.getClass());
+        return true;
     }
 }

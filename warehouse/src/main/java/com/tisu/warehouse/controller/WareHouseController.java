@@ -24,11 +24,11 @@ public class WareHouseController {
     @Autowired
     private UserServerFeigned userServerFeigned;
 
-    @RequestMapping(value = "/buy", method = {RequestMethod.POST})
+    @RequestMapping(value = "/saveOrUpdateWareHouse", method = {RequestMethod.POST})
     @ApiOperation("用户购买")
     public ResponseResult saveWareHouse(@RequestBody WareHouse wareHouse) {
         if (wareHouse != null) {
-            wareHouseService.buyGoods(wareHouse);
+            wareHouseService.saveOrUpdateWareHouse(wareHouse);
         }
         return ResponseResult.builder().success(true).message("success").state(200).content(wareHouse).build();
     }

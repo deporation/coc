@@ -20,14 +20,13 @@ public class WareHouseServiceImpl implements WareHouseService {
      * 购买商品改变库存
      *
      * @param wareHouse 需要改变的仓库
-     * @return 改变的之后的结果
      */
     @Override
-    public WareHouse buyGoods(WareHouse wareHouse) {
-        if (wareHouseMapper.saveWareHouse(wareHouse)){
-            return wareHouse;
-        }else{
-            return null;
+    public void saveOrUpdateWareHouse(WareHouse wareHouse) {
+        if (wareHouseMapper.findWareHouseByUid(wareHouse.get_id()) != null) {
+            wareHouseMapper.updateWareHouse(wareHouse);
+        } else {
+            wareHouseMapper.saveWareHouse(wareHouse);
         }
     }
 
