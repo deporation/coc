@@ -20,11 +20,15 @@ import java.util.List;
 @Service
 public class GoodsTypeServiceImpl extends ServiceImpl<GoodTypeMapper, GoodsType> implements GoodsTypeService {
 
-    @Autowired
-    private GoodTypeMapper goodTypeMapper;
+    private final GoodTypeMapper goodTypeMapper;
+
+    private final RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    public GoodsTypeServiceImpl(GoodTypeMapper goodTypeMapper, RedisTemplate<String, Object> redisTemplate) {
+        this.goodTypeMapper = goodTypeMapper;
+        this.redisTemplate = redisTemplate;
+    }
 
     /**
      * 返回所有的商品种类标签
